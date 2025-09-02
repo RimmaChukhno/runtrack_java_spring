@@ -1,0 +1,24 @@
+# greeting:
+#   message: "Salut application.yml!"
+
+spring:
+  profiles:
+    active: dev   # dev, prod, default
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+greeting:
+  message: "message DEV"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+greeting:
+  message: "message PROD"
+
