@@ -1,16 +1,34 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.WelcomeForm;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ViewController {
 
-    @GetMapping("/list")
-public String list(Model model) {
-    var items = java.util.List.of("Alpha", "Beta", "Gamma");
-    model.addAttribute("items", items);
-    return "view";
-}
+    // GET form
+    @GetMapping("/form")
+    public String form(Model model) {
+        model.addAttribute("welcomeForm", new WelcomeForm());
+        return "view"; // open view.html
+    }
+
+    // POST 
+    @PostMapping("/form")
+    public String submit(
+            @Valid WelcomeForm welcomeForm,
+            BindingResult binding,
+            Model model) {
+        if (binding.hasErrors()) {
+            model.addAttribute("message", "Исправьте ошибки формы");
+            return "view";
+        }
+        model.addAttribute("message", "Bienvenue, " + welcomeForm.getName() + " !");
+        return "view";
+    }
 }

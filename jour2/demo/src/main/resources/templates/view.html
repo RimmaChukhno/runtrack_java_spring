@@ -1,18 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr">
-    
+
 <head>
   <meta charset="UTF-8" />
   <title>View</title>
 </head>
 
 <body>
+  <!-- message -->
   <h1 th:text="${message}">Message placeholder</h1>
+
+  <!-- liste -->
+  <ul>
+    <li th:each="it : ${items}" th:text="${it}">Item</li>
+  </ul>
+
+  <!-- forme -->
+  <form th:action="@{/form}" th:object="${welcomeForm}" method="post">
+    <label>Votre nom :
+      <input type="text" th:field="*{name}" />
+    </label>
+    <button type="submit">Envoyer</button>
+
+    <!-- errors -->
+    <div th:if="${#fields.hasErrors('name')}"
+         th:errors="*{name}">errors</div>
+  </form>
+
+  <!-- salutation -->
+  <p th:text="${message}"></p>
 </body>
-
-<ul>
-  <li th:each="it : ${items}" th:text="${it}">Item</li>
-</ul>
-
 
 </html>
