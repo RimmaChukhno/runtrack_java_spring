@@ -18,14 +18,14 @@ public class ViewController {
         return "view"; // open view.html
     }
 
-    // POST 
+    // POST
     @PostMapping("/form")
     public String submit(
             @Valid WelcomeForm welcomeForm,
             BindingResult binding,
             Model model) {
         if (binding.hasErrors()) {
-            model.addAttribute("message", "Исправьте ошибки формы");
+            model.addAttribute("message", "Corriger les erreurs de formulaire");
             return "view";
         }
         model.addAttribute("message", "Bienvenue, " + welcomeForm.getName() + " !");

@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>View</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
@@ -15,20 +16,25 @@
     <li th:each="it : ${items}" th:text="${it}">Item</li>
   </ul>
 
-  <!-- forme -->
+  <!-- formulaire -->
   <form th:action="@{/form}" th:object="${welcomeForm}" method="post">
     <label>Votre nom :
       <input type="text" th:field="*{name}" />
     </label>
-    <button type="submit">Envoyer</button>
-
-    <!-- errors -->
     <div th:if="${#fields.hasErrors('name')}"
-         th:errors="*{name}">errors</div>
+         th:errors="*{name}">Erreur sur le nom</div>
+
+    <label>Votre âge :
+      <input type="number" th:field="*{age}" />
+    </label>
+    <div th:if="${#fields.hasErrors('age')}"
+         th:errors="*{age}">Erreur sur l'âge</div>
+
+    <button type="submit">Envoyer</button>
   </form>
 
   <!-- salutation -->
-  <p th:text="${message}"></p>
+  <!-- <p th:text="${message}"></p> -->
 </body>
 
 </html>
