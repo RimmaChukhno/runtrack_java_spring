@@ -10,4 +10,9 @@
   <h1 th:text="${message}">Message placeholder</h1>
 </body>
 
+<ul>
+  <li th:each="it : ${items}" th:text="${it}">Item</li>
+</ul>
+
+
 </html>
