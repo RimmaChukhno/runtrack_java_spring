@@ -1,26 +1,32 @@
-package com.example.demo.person;
+package com.example.demo.Person;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
-public class person {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
+public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  private String name;
-  private Integer age;
+    private String name;
+    private int age;
 
-  public person() {}
-  public person(String name, Integer age) {
-    this.name = name;
-    this.age = age;
-  }
+    public Person() {}
 
-  public Long getId() { return id; }
-  public String getName() { return name; }
-  public Integer getAge() { return age; }
-  public void setId(Long id) { this.id = id; }
-  public void setName(String name) { this.name = name; }
-  public void setAge(Integer age) { this.age = age; }
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+
+    public int getAge() { return age; }
+    public void setAge(int age) { this.age = age; }
 }
