@@ -20,7 +20,25 @@ public class PersonController {
 
   @PostMapping
   public String create(@ModelAttribute("personForm") Person p) {
-    repo.save(p);             // создание
+      repo.save(p);
+      return "redirect:/people";
+  }
+  
+  
+  @PostMapping("/{id}/delete")
+  public String delete(@PathVariable Long id) {
+    repo.deleteById(id);
+    return "redirect:/people";
+  }
+
+  @PostMapping("/{id}/update")
+  public String update(@PathVariable Long id,
+                       @RequestParam String name,
+                       @RequestParam Integer age) {
+    Person p = repo.findById(id).orElseThrow();
+    p.setName(name);
+    p.setAge(age);
+    repo.save(p);
     return "redirect:/people";
   }
 }
